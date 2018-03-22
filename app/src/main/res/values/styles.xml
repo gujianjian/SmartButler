@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--这个为5.0以下设置去除阴影，应该现在最低版本为15-->
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>
