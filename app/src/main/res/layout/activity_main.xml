@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:src="@drawable/icon_setting"
         android:id="@+id/mFab"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
