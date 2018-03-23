@@ -3,6 +3,7 @@ package com.example.joy.smartbutler.ui;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -15,11 +16,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /**
-         * 5.0以上去除阴影方法
-         */
-        if(Build.VERSION.SDK_INT>=21){
-            getSupportActionBar().setElevation(0);
+
+        ActionBar actionBar= getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 }

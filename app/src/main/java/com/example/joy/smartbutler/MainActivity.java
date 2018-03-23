@@ -1,5 +1,7 @@
 package com.example.joy.smartbutler;
 
+import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,12 +17,13 @@ import com.example.joy.smartbutler.fragments.GirlFragment;
 import com.example.joy.smartbutler.fragments.UserFragment;
 import com.example.joy.smartbutler.fragments.WeChatFragment;
 import com.example.joy.smartbutler.ui.BaseActivity;
+import com.example.joy.smartbutler.ui.SettingActivity;
 import com.example.joy.smartbutler.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -33,6 +36,13 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /**
+         * 5.0以上去除阴影方法
+         */
+        if(Build.VERSION.SDK_INT>=21){
+            getSupportActionBar().setElevation(0);
+        }
 
         initData();
         initView();
@@ -60,6 +70,7 @@ public class MainActivity extends BaseActivity {
         mViewPager = findViewById(R.id.mViewPager);
         mFab = findViewById(R.id.mFab);
         mFab.setVisibility(View.GONE);
+        mFab.setOnClickListener(this);
 
         //预加载
         mViewPager.setOffscreenPageLimit(mListFragments.size());
@@ -107,4 +118,13 @@ public class MainActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.mFab:
+                Intent intent=new Intent(this, SettingActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
