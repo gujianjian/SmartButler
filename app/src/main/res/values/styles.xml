@@ -9,6 +9,14 @@
 
         <!--这个为5.0以下设置去除阴影，应该现在最低版本为15-->
         <item name="android:windowContentOverlay">@null</item>
+
+
     </style>
 
+    <style name="ActivityFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
