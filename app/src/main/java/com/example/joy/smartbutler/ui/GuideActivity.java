@@ -123,7 +123,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.iv_skip:
             case R.id.btn_enter_main:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;

@@ -34,6 +34,9 @@
 
         <!--导航页-->
         <activity android:name=".ui.GuideActivity" android:theme="@style/ActivityFullScreen"/>
+
+        <!--登陆-->
+        <activity android:name=".ui.LoginActivity"/>
     </application>
 
 </manifest>
