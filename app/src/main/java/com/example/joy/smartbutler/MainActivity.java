@@ -19,6 +19,7 @@ import com.example.joy.smartbutler.fragments.WeChatFragment;
 import com.example.joy.smartbutler.ui.BaseActivity;
 import com.example.joy.smartbutler.ui.SettingActivity;
 import com.example.joy.smartbutler.utils.L;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
         initView();
 
-
+        //测试bugly
+//        CrashReport.testJavaCrash();
     }
 
 
