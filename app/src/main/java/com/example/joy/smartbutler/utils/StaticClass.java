@@ -11,4 +11,6 @@ public class StaticClass {
     public final static String IS_FIRST="is_first";
 
     public final static String BUGLY_APP_ID="fde38902f2";
+
+    public final static String BMOB_APPLICATION_ID="6e2889a9490fa1226f4b52f8ebb63e24";
 }
