@@ -1,33 +1,17 @@
 package com.example.joy.smartbutler.entity;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by joy on 2018/3/25.
  */
 
-public class MyUser extends BmobObject {
-    private String username;
-    private String password;
+public class MyUser extends BmobUser {
+
     private int age;
     private boolean isGender;
-    private String email;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public int getAge() {
         return age;
@@ -45,11 +29,5 @@ public class MyUser extends BmobObject {
         isGender = gender;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

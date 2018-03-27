@@ -55,10 +55,8 @@ public  class RegisterActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i==R.id.rb_male){
-                    L.d("aaa");
                     isGender=true;
                 }else{
-                    L.d("bbb");
                     isGender=false;
                 }
             }
@@ -84,9 +82,9 @@ public  class RegisterActivity extends AppCompatActivity implements View.OnClick
                         myUser.setGender(isGender);
                         myUser.setAge(Integer.parseInt(age));
                         myUser.setEmail(email);
-                        myUser.save(new SaveListener<String>() {
+                        myUser.signUp(new SaveListener<MyUser>() {
                             @Override
-                            public void done(String s, BmobException e) {
+                            public void done(MyUser user, BmobException e) {
                                 if(e==null){
                                     Toast.makeText(RegisterActivity.this,"注册成功！",Toast.LENGTH_SHORT).show();
                                     finish();
