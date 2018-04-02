@@ -50,9 +50,12 @@
         <!--注册-->
         <activity android:name=".ui.RegisterActivity"/>
 
-        <activity android:name="com.example.joy.test.dialog.DialogActivity">
+        <!--找回密码-->
+        <activity android:name=".ui.ResetPasswordActivity"/>
 
-        </activity>
+        <activity android:name="com.example.joy.test.dialog.DialogActivity"/>
+
+
     </application>
 
 </manifest>

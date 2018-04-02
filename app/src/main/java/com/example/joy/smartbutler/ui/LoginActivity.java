@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText et_password;
     private String username;
     private String password;
+    private TextView tv_forgetPass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+        //忘记密码
+        tv_forgetPass = findViewById(R.id.tv_forgetPass);
+        tv_forgetPass.setOnClickListener(this);
         //注册
         btn_register = findViewById(R.id.btn_register);
         //登陆
@@ -84,7 +88,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void done(MyUser user, BmobException e) {
                         if (e == null) {
-                            dialog.dismiss();
                             UtilTools.toast("登陆成功");
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
@@ -92,9 +95,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             UtilTools.toast("登陆失败：" + e.getErrorCode());
                             L.d("LoginError:" + e.getMessage());
                         }
+                        dialog.dismiss();
                     }
                 });
 
+                break;
+            case R.id.tv_forgetPass:
+                //打开注册页面
+                ResetPasswordActivity.createIntent(this);
                 break;
             default:
                 break;
