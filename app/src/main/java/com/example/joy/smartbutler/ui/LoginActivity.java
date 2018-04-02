@@ -16,6 +16,7 @@ import com.example.joy.smartbutler.entity.MyUser;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.ShareUtils;
 import com.example.joy.smartbutler.utils.UtilTools;
+import com.example.joy.smartbutler.view.MyDialog;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(register);
                 break;
             case R.id.btn_login:
+                final MyDialog dialog=new MyDialog(this,200,200);
+                dialog.show();
+
                 username = et_username.getText().toString().trim();
                 password = et_password.getText().toString();
                 MyUser myUser = new MyUser();
@@ -80,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void done(MyUser user, BmobException e) {
                         if (e == null) {
-
+                            dialog.dismiss();
                             UtilTools.toast("登陆成功");
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();

@@ -49,6 +49,10 @@
 
         <!--注册-->
         <activity android:name=".ui.RegisterActivity"/>
+
+        <activity android:name="com.example.joy.test.dialog.DialogActivity">
+
+        </activity>
     </application>
 
 </manifest>
