@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(register);
                 break;
             case R.id.btn_login:
-                final MyDialog dialog=new MyDialog(this,200,200);
+                final MyDialog dialog=new MyDialog(this,R.style.dialogAnim,R.layout.my_dialog);
                 dialog.show();
 
                 username = et_username.getText().toString().trim();

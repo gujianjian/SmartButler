@@ -12,6 +12,15 @@ public class MyUser extends BmobUser {
     private int age;
     private boolean isGender;
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    private String desc;
 
     public int getAge() {
         return age;
@@ -21,7 +30,7 @@ public class MyUser extends BmobUser {
         this.age = age;
     }
 
-    public boolean isGender() {
+    public boolean getGender() {
         return isGender;
     }
 

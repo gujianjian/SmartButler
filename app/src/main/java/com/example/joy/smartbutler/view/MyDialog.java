@@ -17,22 +17,45 @@ import com.example.joy.smartbutler.R;
 
 public class MyDialog extends Dialog {
 
-    public MyDialog(@NonNull Context context,int width,int height) {
+    public MyDialog(@NonNull Context context,int anim,int layout) {
         super(context, R.style.MyDialog);
+        setContentView(layout);
+
+        Window window = getWindow();
+//        WindowManager.LayoutParams params = window.getAttributes();
+//        params.gravity= Gravity.CENTER;
+//        params.width=width;
+//        params.height=height;
+//        window.setAttributes(params);
+        window.setWindowAnimations(anim);
+    }
+
+    /**
+     * 自定义对话框
+     * @param context context
+     * @param anim 动画资源文件
+     * @param layout 布局资源文件
+     * @param gravity 位置
+     */
+    public MyDialog(@NonNull Context context,int anim,int layout,int gravity) {
+        super(context, R.style.MyDialog);
+        setContentView(layout);
         Window window = getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
-        params.gravity= Gravity.CENTER;
-        params.width=width;
-        params.height=height;
+        params.gravity= gravity;
+        params.width= WindowManager.LayoutParams.MATCH_PARENT;
+
         window.setAttributes(params);
-        window.setWindowAnimations(R.style.dialogAnim);
+        window.setWindowAnimations(anim);
+
     }
 
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_dialog);
-    }
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//    }
 }
