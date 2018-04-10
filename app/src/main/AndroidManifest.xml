@@ -57,7 +57,8 @@
 
         <activity android:name="com.example.joy.test.dialog.DialogActivity"/>
 
-
+        <!--物流查询-->
+        <activity android:label="物流查询" android:name=".ui.CourieActivity"/>
     </application>
 
 </manifest>

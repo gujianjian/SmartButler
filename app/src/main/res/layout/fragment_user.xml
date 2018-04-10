@@ -142,7 +142,9 @@
                 android:visibility="gone" />
 
             <TextView
-
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/tv_courie"
                 android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

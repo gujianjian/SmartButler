@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.joy.smartbutler.R;
 import com.example.joy.smartbutler.entity.MyUser;
+import com.example.joy.smartbutler.ui.CourieActivity;
 import com.example.joy.smartbutler.ui.LoginActivity;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.ShareUtils;
@@ -69,6 +70,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private Button btn_logout;
     private TextView tv_update;
     private Button btn_update;
+
+    //物流查询
+    private TextView tv_courie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -121,6 +125,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         tv_update.setOnClickListener(this);
         btn_update = view.findViewById(R.id.btn_update);
         btn_update.setOnClickListener(this);
+
+        //物流查询
+        tv_courie = view.findViewById(R.id.tv_courie);
+        tv_courie.setOnClickListener(this);
     }
 
     private void setEditTextEnable(boolean isVisiable){
@@ -186,6 +194,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                     }
                 });
 
+                break;
+                //物流查询
+            case R.id.tv_courie:
+                CourieActivity.createIntent(getActivity());
                 break;
             default:
                 break;
