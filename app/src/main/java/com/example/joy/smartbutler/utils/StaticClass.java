@@ -19,4 +19,7 @@ public class StaticClass {
 
     //微信appkey
     public final static String WECHAT_KEY="c08466d8f475efd4a94f532e40d153d5";
+
+    //手机appkey
+    public final static String PHONE_KEY="bfa48f96a13361100bb5b9b3564e70b7";
 }

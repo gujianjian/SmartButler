@@ -29,6 +29,7 @@ import com.example.joy.smartbutler.R;
 import com.example.joy.smartbutler.entity.MyUser;
 import com.example.joy.smartbutler.ui.CourieActivity;
 import com.example.joy.smartbutler.ui.LoginActivity;
+import com.example.joy.smartbutler.ui.PhoneActivity;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.ShareUtils;
 import com.example.joy.smartbutler.view.MyDialog;
@@ -208,7 +209,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 break;
                 //归属地查询
             case R.id.tv_phone:
-
+                startActivity(new Intent(getActivity(), PhoneActivity.class));
                 break;
             default:
                 break;
