@@ -16,4 +16,7 @@ public class StaticClass {
 
     //快递appkey
     public final static String COURIE_KEY="08502f61ff7c9389a5f8a83a5ba55353";
+
+    //微信appkey
+    public final static String WECHAT_KEY="c08466d8f475efd4a94f532e40d153d5";
 }

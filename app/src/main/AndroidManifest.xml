@@ -59,6 +59,12 @@
 
         <!--物流查询-->
         <activity android:label="物流查询" android:name=".ui.CourieActivity"/>
+
+        <!--归属地查询-->
+        <activity android:name=".ui.PhoneActivity" android:label="归属地查询" />
+
+        <!--显示webview-->
+        <activity android:name=".ui.WebViewActivity"/>
     </application>
 
 </manifest>

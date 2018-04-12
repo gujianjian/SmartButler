@@ -71,6 +71,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private TextView tv_update;
     private Button btn_update;
 
+    //归属地查询
+    private TextView tv_phone;
+
     //物流查询
     private TextView tv_courie;
 
@@ -129,6 +132,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         //物流查询
         tv_courie = view.findViewById(R.id.tv_courie);
         tv_courie.setOnClickListener(this);
+
+        //归属地查询
+        tv_phone = view.findViewById(R.id.tv_phone);
+        tv_phone.setOnClickListener(this);
     }
 
     private void setEditTextEnable(boolean isVisiable){
@@ -198,6 +205,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 //物流查询
             case R.id.tv_courie:
                 CourieActivity.createIntent(getActivity());
+                break;
+                //归属地查询
+            case R.id.tv_phone:
+
                 break;
             default:
                 break;
