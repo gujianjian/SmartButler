@@ -2,8 +2,10 @@ package com.example.joy.smartbutler.application;
 
 import android.app.Application;
 import android.content.Context;
+//import android.support.multidex.MultiDex;
 
 import com.example.joy.smartbutler.utils.StaticClass;
+import com.squareup.picasso.Picasso;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;
@@ -22,6 +24,7 @@ public class BaseApplication extends Application {
         Bmob.initialize(this, StaticClass.BMOB_APPLICATION_ID);
 
         mContext=getApplicationContext();
+
     }
 
     public static Context getMyContext(){

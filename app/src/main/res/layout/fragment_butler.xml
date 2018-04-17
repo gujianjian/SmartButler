@@ -2,11 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:divider="@null"
+        android:id="@+id/mListRobot"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/string_butler"
-        android:textSize="30sp" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+
+            android:textColor="@android:color/white"
+            android:text="发送"
+            android:background="@drawable/btn_bg"
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 </LinearLayout>

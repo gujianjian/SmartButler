@@ -22,4 +22,10 @@ public class StaticClass {
 
     //手机appkey
     public final static String PHONE_KEY="bfa48f96a13361100bb5b9b3564e70b7";
+
+    //机器人
+    public final static String ROBOT_key="b3c191b420d64d429d94f3993de26c52";
+
+    //妹子接口
+    public final static String GIRL_URL="http://gank.io/api/data/福利/100/1";
 }
