@@ -28,4 +28,7 @@ public class StaticClass {
 
     //妹子接口
     public final static String GIRL_URL="http://gank.io/api/data/福利/100/1";
+
+    //短信action
+    public final static String SMS_ACTION="android.provider.Telephony.SMS_RECEIVED";
 }

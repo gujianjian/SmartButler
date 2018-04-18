@@ -54,6 +54,7 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         btn_send.setOnClickListener(this);
 
         et_text = view.findViewById(R.id.et_text);
+
     }
 
     @Override

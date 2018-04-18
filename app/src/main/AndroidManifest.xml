@@ -19,6 +19,12 @@
 
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
@@ -65,6 +71,9 @@
 
         <!--显示webview-->
         <activity android:name=".ui.WebViewActivity"/>
+
+        <!--短信服务-->
+        <service android:name=".service.SmsService"/>
     </application>
 
 </manifest>
