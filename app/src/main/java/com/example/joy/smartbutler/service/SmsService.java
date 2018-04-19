@@ -35,11 +35,12 @@ import org.w3c.dom.Text;
 
 public class SmsService extends Service implements View.OnClickListener {
 
-    private SmsReceive smsReceive;
+    private SmsReceiver smsReceive;
     private View mView;
     private String address;
     private String content;
     private WindowManager wm;
+    private HomeReceiver homeReceiver;
 
     @Nullable
     @Override
@@ -54,12 +55,18 @@ public class SmsService extends Service implements View.OnClickListener {
 
 
 
+        //监听短信
         IntentFilter filter = new IntentFilter();
         filter.addAction(StaticClass.SMS_ACTION);
         filter.setPriority(Integer.MAX_VALUE);
-        smsReceive = new SmsReceive();
+        smsReceive = new SmsReceiver();
         registerReceiver(smsReceive, filter);
 
+        //监听home键
+        IntentFilter homeFiler = new IntentFilter();
+        homeFiler.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        homeReceiver = new HomeReceiver();
+        registerReceiver(homeReceiver, homeFiler);
     }
 
 
@@ -69,11 +76,30 @@ public class SmsService extends Service implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(smsReceive);
+        unregisterReceiver(homeReceiver);
     }
 
 
+    private static final String SYSTEM_DIALOG_REASON_KEY="reason";
+    private static final String SYSTEM_DIALOG_HOME_KEY="homekey";
+    class HomeReceiver extends BroadcastReceiver {
 
-    class SmsReceive extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)){
+//                L.i("test:"+intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY));
+                if (SYSTEM_DIALOG_HOME_KEY.equals(intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY))) {
+                    if (mView.getParent() != null) {
+                        wm.removeView(mView);
+                    }
+                }
+            }
+            L.i("action:"+action);
+        }
+    }
+
+    class SmsReceiver extends BroadcastReceiver{
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -92,6 +118,7 @@ public class SmsService extends Service implements View.OnClickListener {
         }
     }
 
+    //显示短信窗口
     private void showSmsWindow() {
         wm = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
