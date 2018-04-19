@@ -1,15 +1,20 @@
 package com.example.joy.smartbutler.ui;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joy.smartbutler.MainActivity;
@@ -17,6 +22,12 @@ import com.example.joy.smartbutler.R;
 import com.example.joy.smartbutler.service.SmsService;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.ShareUtils;
+import com.example.joy.smartbutler.utils.StaticClass;
+import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +40,11 @@ import java.util.List;
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
     private Switch switch_sms;
     private List<String> listPermission = new ArrayList<>();
+    private int versionCode;
+    private String versionName;
+    private TextView tv_version_name;
+    private LinearLayout ll_check_version;
+    private String downloadurl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,17 +54,26 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initview() {
+        //短信开启
         switch_sms = findViewById(R.id.switch_sms);
         switch_sms.setOnClickListener(this);
 
         boolean ischecked = ShareUtils.getBoolean(this, "sms_checked", false);
         switch_sms.setChecked(ischecked);
+
+        //版本检测
+        tv_version_name = findViewById(R.id.tv_version_name);
+        checkVersionCode(tv_version_name);
+        ll_check_version = findViewById(R.id.ll_check_version);
+        ll_check_version.setOnClickListener(this);
     }
+
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //开启短信监听
             case R.id.switch_sms:
                 ShareUtils.putBoolean(SettingActivity.this, "sms_checked", switch_sms.isChecked());
                 if (switch_sms.isChecked()) {
@@ -57,8 +82,21 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     startSmsService();
                 }
                 break;
+            //检测版本
+            case R.id.ll_check_version:
+                RxVolley.get(StaticClass.DOWNLOAD_URL, new HttpCallback() {
+                    @Override
+                    public void onSuccess(String t) {
+                       L.d("download--->"+t);
+                       parseJson(t);
+                    }
+                });
+
+
+                break;
         }
     }
+
 
     private void startSmsService() {
         Intent intent = new Intent(SettingActivity.this, SmsService.class);
@@ -110,4 +148,60 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+
+
+    //检测显示版本号
+    private void checkVersionCode(TextView tv_version_name) {
+        try {
+            PackageManager pm = getPackageManager();
+            PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
+            versionCode = packageInfo.versionCode;
+            versionName = packageInfo.versionName;
+            tv_version_name.setText("检测版本：" + versionName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //显示版本更新窗口
+    private void showUpdateDialog(String content) {
+        new AlertDialog.Builder(this)
+                .setTitle("版本提示")
+                .setMessage(content)
+                .setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(SettingActivity.this, UpdateActivity.class);
+                        i.putExtra("url",downloadurl);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+    }
+
+
+    //解析下载内容
+    private void parseJson(String t) {
+        try {
+            JSONObject jsonObject = new JSONObject(t);
+            int code = jsonObject.getInt("versionCode");
+            downloadurl = jsonObject.getString("downloadurl");
+            String content = jsonObject.getString("content");
+            if(code>versionCode){
+                showUpdateDialog(content);
+            }else{
+                Toast.makeText(SettingActivity.this,"已是最新版本！",Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

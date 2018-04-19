@@ -74,6 +74,9 @@
 
         <!--短信服务-->
         <service android:name=".service.SmsService"/>
+
+        <!--版本更新-->
+        <activity android:name=".ui.UpdateActivity" android:label="更新"/>
     </application>
 
 </manifest>

@@ -31,4 +31,7 @@ public class StaticClass {
 
     //短信action
     public final static String SMS_ACTION="android.provider.Telephony.SMS_RECEIVED";
+
+    //下载url
+    public final static String DOWNLOAD_URL="http://192.168.0.106:8080/download/myjson.json";
 }
