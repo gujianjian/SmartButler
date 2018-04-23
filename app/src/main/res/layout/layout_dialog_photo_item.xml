@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <uk.co.senab.photoview.PhotoView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/pv_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 </LinearLayout>

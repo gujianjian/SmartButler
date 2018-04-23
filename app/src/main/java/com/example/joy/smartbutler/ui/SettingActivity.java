@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,12 +19,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joy.smartbutler.MainActivity;
+
+import com.example.joy.qrcode.CaptureActivity;
+import com.example.joy.qrcode.Generatectivity;
 import com.example.joy.smartbutler.R;
 import com.example.joy.smartbutler.service.SmsService;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.ShareUtils;
 import com.example.joy.smartbutler.utils.StaticClass;
+import com.example.joy.smartbutler.view.CommonSettingView;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 
@@ -30,7 +35,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,6 +49,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private TextView tv_version_name;
     private LinearLayout ll_check_version;
     private String downloadurl;
+    private CommonSettingView setting_scan;
+    private CommonSettingView generate_qrcode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,7 +72,29 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         checkVersionCode(tv_version_name);
         ll_check_version = findViewById(R.id.ll_check_version);
         ll_check_version.setOnClickListener(this);
+
+        //扫一扫
+        setting_scan = findViewById(R.id.setting_scan);
+        setting_scan.setOnCommonSettingViewClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SettingActivity.this,"扫一扫",Toast.LENGTH_SHORT).show();
+                Intent openCameraIntent = new Intent(SettingActivity.this, CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+            }
+        });
+
+        //生成二维码
+        generate_qrcode=findViewById(R.id.generate_qrcode);
+        generate_qrcode.setOnCommonSettingViewClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SettingActivity.this, MyGeneratectivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 
 
 
@@ -94,6 +122,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
 
                 break;
+
         }
     }
 
@@ -203,5 +232,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             e.printStackTrace();
         }
     }
+
+
 
 }

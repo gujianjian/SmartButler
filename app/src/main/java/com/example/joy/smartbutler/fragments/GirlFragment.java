@@ -1,5 +1,6 @@
 package com.example.joy.smartbutler.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,8 +19,9 @@ import com.example.joy.smartbutler.entity.GirlData;
 import com.example.joy.smartbutler.utils.L;
 import com.example.joy.smartbutler.utils.StaticClass;
 import com.example.joy.smartbutler.view.MyDialog;
-import com.kymjs.rxvolley.RxVolley;
-import com.kymjs.rxvolley.client.HttpCallback;
+
+
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -35,7 +37,8 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import uk.co.senab.photoview.PhotoView;
+
+
 
 /**
  * Created by joy on 2018/3/22.

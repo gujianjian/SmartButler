@@ -77,6 +77,10 @@
 
         <!--版本更新-->
         <activity android:name=".ui.UpdateActivity" android:label="更新"/>
+
+        <!--生成二维码-->
+        <activity android:name=".ui.MyGeneratectivity"/>
     </application>
+
 
 </manifest>

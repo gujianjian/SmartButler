@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -71,4 +72,20 @@
 
 
     </LinearLayout>
+
+
+    <com.example.joy.smartbutler.view.CommonSettingView
+        android:id="@+id/setting_scan"
+        app:setting_name="扫一扫"
+        app:setting_desc="扫描二维码或者条形码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <com.example.joy.smartbutler.view.CommonSettingView
+        android:id="@+id/generate_qrcode"
+        app:setting_name="生成二维码"
+        app:setting_desc="生成自己的二维码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
